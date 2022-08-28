@@ -1,0 +1,49 @@
+extends layout
+
+block layout-content
+    div.View.WelcomeView
+        h1.Banner Что ты знаешь про виртуализацию, контейнеризацию, docker, k8s?
+        div.Message
+            div.Title
+                h3 Результаты опрос
+            div(style="height:400px; width:400px;")
+              canvas(id="myChart")
+            script.
+              const labels = ["виртуал.", "контейнер.", "docker", "k8s"];
+              const results = [];
+              results.push(#{results.virtualization});
+              results.push(#{results.containerization});
+              results.push(#{results.docker});
+              results.push(#{results.k8s});
+              const data = {
+                labels: labels,
+                datasets: [{
+                  label: 'ответы',
+                  data: results,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                  ],
+                  hoverOffset: 4
+                }]
+              };
+              const config = {
+                type: 'doughnut',
+                data: data,
+              };
+              // const myChart = new Chart(
+              //         document.getElementById('myChart'),
+              //         config
+              // );
+              const myChart = document.getElementById("myChart");
+              const ctx = myChart.getContext("2d");
+              // ctx.canvas.width = 150;
+              // ctx.canvas.high = 150;
+              var myDoughnut = new Chart(ctx, config);
+            span.Result Я что-то слышал (или знаю/умею/практикую) про виртуальные машины: #{results.virtualization}
+            span.Result Я что-то слышал (или знаю/умею/практикую) про контейнеризацию: #{results.containerization}
+            span.Result Я что-то слышал (или знаю/умею/практикую) про docker: #{results.docker}
+            span.Result Я что-то слышал (или знаю/умею/практикую) про k8s: #{results.k8s}
+        div.NavButtons

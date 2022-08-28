@@ -1,0 +1,25 @@
+extends layout
+
+block layout-content
+    div.View.WelcomeView
+        h1.Banner Что ты знаешь про виртуализацию, контейнеризацию, docker, k8s?
+        div.Message
+            div.Title
+                h3 Опрос
+            span.Details
+                form(action='/vote', method='get')
+                    div
+                        input(type='checkbox', name='virtualization', value='true')
+                        | Я что-то слышал (или знаю/умею/практикую) про виртуальные машины
+                        br
+                        input(type='checkbox', name='containerization', value='true')
+                        | Я что-то слышал (или знаю/умею/практикую) про контейнеризацию
+                        br
+                        input(type='checkbox', name='docker', value='true')
+                        | Я что-то слышал (или знаю/умею/практикую) про docker
+                        br
+                        input(type='checkbox', name='k8s', value='true')
+                        | Я что-то слышал (или знаю/умею/практикую) про k8s
+                    div.SubmitBox
+                        input(type='submit', value='Отправить').SubmitButton
+        div.NavButtons
