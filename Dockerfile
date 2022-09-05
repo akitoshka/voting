@@ -1,13 +1,10 @@
 FROM node:latest
 
 COPY ./dist /app
-COPY ./node_modules /app
-COPY package*.json /app
+COPY ./node_modules /app/node_modules
 COPY .env /app
 
 WORKDIR /app
-
-RUN npm install
 
 EXPOSE 8000
 
